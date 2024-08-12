@@ -1,5 +1,5 @@
-## calculator
+# calculator
 
-# Goals
+## Goals
 - add basic feature
 - add backspace feature
