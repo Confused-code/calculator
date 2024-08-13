@@ -31,22 +31,21 @@ buttonArr.forEach((button) => {
         inputNum(char);
     });
 });
-document.addEventListener('keydown', (e)=> {
-    const char = e.key;
-    if(numChars.includes(char)) inputNum(char);
-})
 operatorArr.forEach((operator) => {
     operator.addEventListener('click', (e)=> {
         const op = e.target.textContent;
         addOperator(op);
     });
 });
-document.addEventListener('keydown', (e)=>{
+document.addEventListener('keydown', (e)=> {
+    const char = e.key;
+    if(numChars.includes(char)) inputNum(char);
+    //checking for operators
     const op = e.key;
     if(operatorChars.includes(op)) addOperator(op);
     else if(op === '=' || op === "Enter") calculate(op);
     else if(op === 'Backspace') clearChar();
-});
+})
 backspace.addEventListener('click', clearChar);
 equal.addEventListener('click', calculate);
 allClean.addEventListener('click', clean);
