@@ -73,12 +73,13 @@ function addOperator(e) {
         presentOperator = e.target.textContent; 
         isOperatorPresent = true;
         subScreen.textContent = a+e.target.textContent;
-        mainScreen.textContent = '';
+        mainScreen.textContent = '0';
     } else {
     isOperatorPresent = true;
     presentOperator = e.target.textContent;
     console.log(e.target.textContent);
     subScreen.textContent = a+e.target.textContent;
+    mainScreen.textContent = '0';
     }
 }
 
@@ -139,6 +140,7 @@ function makeNegitive() {
             temp.unshift('-');
             carryB = temp.join('');
         }
+        mainScreen.textContent = b;
     } else {
         a *= -1;
         let temp = carryA.split('');
@@ -149,5 +151,6 @@ function makeNegitive() {
             temp.unshift('-');
             carryA = temp.join('');
         }
+        mainScreen.textContent = a;
     }
 }
