@@ -17,24 +17,44 @@ let result = null;
 const buttonArr = Array.from(buttons);
 const operatorArr = Array.from(operators);
 
+//button characters allowed
+const numChars = '1234567890.';
+const operatorChars = '+-*/';
+
 //state management
 let isOperatorPresent = false;
 let presentOperator = '';
 
-operatorArr.forEach((operator) => {
-    operator.addEventListener('click', addOperator);
-});
 buttonArr.forEach((button) => {
-    button.addEventListener('click', inputNum);
+    button.addEventListener('click', (e) => {
+        const char = e.target.textContent;
+        inputNum(char);
+    });
+});
+document.addEventListener('keydown', (e)=> {
+    const char = e.key;
+    if(numChars.includes(char)) inputNum(char);
+})
+operatorArr.forEach((operator) => {
+    operator.addEventListener('click', (e)=> {
+        const op = e.target.textContent;
+        addOperator(op);
+    });
+});
+document.addEventListener('keydown', (e)=>{
+    const op = e.key;
+    if(operatorChars.includes(op)) addOperator(op);
+    else if(op === '=' || op === "Enter") calculate(op);
+    else if(op === 'Backspace') clearChar();
 });
 backspace.addEventListener('click', clearChar);
 equal.addEventListener('click', calculate);
 allClean.addEventListener('click', clean);
 minus.addEventListener('click', makeNegitive);
 
-function inputNum(e) {
+function inputNum(char) {
     if(isOperatorPresent == false) {
-        let char = e.target.textContent;
+        // let char = e.target.textContent;
         if(char === '.') {
             if(carryA.includes(char)) return;
         }
@@ -43,7 +63,7 @@ function inputNum(e) {
         mainScreen.textContent = carryA;
     }
     if(isOperatorPresent == true) {
-        let char = e.target.textContent;
+        // let char = e.target.textContent;
         if(char === '.') {
             if(carryB.includes(char)) return;
         }
@@ -73,23 +93,23 @@ function clearChar() {
     }
 }
 
-function addOperator(e) {
+function addOperator(op) {
     if(isOperatorPresent == true && b!= null) {
-        calculate(e);
-        presentOperator = e.target.textContent; 
+        calculate(op);
+        presentOperator = op; 
         isOperatorPresent = true;
-        subScreen.textContent = a+e.target.textContent;
+        subScreen.textContent = a+op;
         mainScreen.textContent = '0';
     } else {
     isOperatorPresent = true;
-    presentOperator = e.target.textContent;
-    console.log(e.target.textContent);
-    subScreen.textContent = a+e.target.textContent;
+    presentOperator = op;
+    // console.log(e.target.textContent);
+    subScreen.textContent = a+op;
     mainScreen.textContent = '0';
     }
 }
 
-function calculate(e) {
+function calculate(op) {
     switch(presentOperator) {
         case '+': 
             result = a+b;
@@ -132,7 +152,7 @@ function clean() {
     isOperatorPresent = false;
     presentOperator = '';
 
-    mainScreen.textContent='';
+    mainScreen.textContent='0';
 }
 
 function makeNegitive() {
