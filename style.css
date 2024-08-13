@@ -21,10 +21,20 @@ div {
     box-sizing: border-box;
 }
 
+p {    
+    font-size: 4rem;
+    font-family: 'digital display', 'Teko', 'Courier New', Courier, monospace;
+    font-weight: 700;
+    letter-spacing: 7px;
+
+    margin: 0;
+}
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 
     margin: 0;
 
@@ -35,7 +45,7 @@ div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 
     box-sizing: content-box;
     min-width: 450px;
@@ -51,6 +61,7 @@ div {
 }
 
 .screen {
+    color: rgba(0, 0, 0, .7);
     font-family: 'digital display','Teko', 'Courier New', Courier, monospace;
     
     padding: 10px;
@@ -62,6 +73,20 @@ div {
     /* box-shadow: 2px 2px 8px 2px rgb(104, 84, 133); */
 
     border-radius: 1em;
+
+    display: flex;
+    flex-flow: column;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items:flex-end;
+}
+
+.mainScreen {
+    font-size: 5rem;
+}
+
+.subScreen {
+    font-weight: 300;
 }
 
 .buttons {
@@ -78,7 +103,12 @@ div {
     width: 340px;
 }
     
-.button, .operator {
+.button,
+.operator,
+.backspace,
+.equal,
+.allClean,
+.minus {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,7 +123,8 @@ div {
     border: 3px solid rgb(233, 166, 166);
     border-bottom-color: rgb(180, 134, 134);
     border-right-color: rgb(180, 134, 134);
-    box-shadow: inset -2px -1px 2px 2px rgb(43, 43, 43);
+    /* box-shadow: inset -2px -1px 2px 2px rgb(43, 43, 43); */
+    box-shadow: 2px 2px 5px 2px black;
 
     color: rgb(233, 166, 166);
     font-size: 2.5rem;
@@ -102,4 +133,16 @@ div {
 .backspaceImage {
     filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(300deg) brightness(95%) contrast(80%);
     width: 55px;
+}
+
+.backspaceImage:active {
+    filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(300deg) brightness(55%) contrast(80%);
+}
+
+.button:active,
+.operator:active,
+.equal:active,
+.allClean:active,
+.minus:active {
+    box-shadow: 1px 1px 3px 1px black;
 }
