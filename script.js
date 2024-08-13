@@ -34,6 +34,10 @@ minus.addEventListener('click', makeNegitive);
 
 function inputNum(e) {
     if(isOperatorPresent == false) {
+        // console.dir(e.target);
+        // if(e.target.textContent == '.') {
+
+        // }
         let char = e.target.textContent;
         carryA = carryA + char;
         a= +carryA;
